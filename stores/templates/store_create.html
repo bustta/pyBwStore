@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title%}新增商店{{ block.super }}{% endblock title%}
+
+
+{% block content%}
+<form action="" method="post" role="form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">新增</button>
+</form>
+{% endblock content%}
