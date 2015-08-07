@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Store
 from django.forms.models import modelform_factory
 
@@ -18,3 +18,9 @@ def store_create(request):
 
     form = StoreForm()
     return render(request, 'store_create.html', {'form': form})
+
+
+def store_detail(request, pk):
+    store = get_object_or_404(Store, pk=pk)
+    return render(request, 'store_detail.html', {'store': store})
+
