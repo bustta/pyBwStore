@@ -11,3 +11,5 @@ class Store(models.Model):
     telephone = models.CharField(max_length=30)
     website = models.SlugField()
 
+    def __str__(self):
+        return self.name
