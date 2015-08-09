@@ -6,7 +6,40 @@
 {% block content%}
 <form action="" method="post" role="form">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">新增</button>
+    <div class="mdl-textfield mdl-js-textfield">
+        <label class="mdl-textfield__label">店名</label>
+        <input name="name" class="mdl-textfield__input" type="text" />
+    </div>
+    <div class="mdl-textfield mdl-js-textfield">
+        <label class="mdl-textfield__label">類別</label>
+        <input name="category" class="mdl-textfield__input" type="text" />
+    </div>
+    <div class="mdl-textfield mdl-js-textfield">
+        <label class="mdl-textfield__label">城市</label>
+        <input name="city" class="mdl-textfield__input" type="text" />
+    </div>
+    <div class="mdl-textfield mdl-js-textfield">
+        <label class="mdl-textfield__label">區</label>
+        <input name="area" class="mdl-textfield__input" type="text" />
+    </div>
+    <div class="mdl-textfield mdl-js-textfield">
+        <label class="mdl-textfield__label">地址</label>
+        <input name="address" class="mdl-textfield__input" type="text" />
+    </div>
+    <div class="mdl-textfield mdl-js-textfield">
+        <label class="mdl-textfield__label">郵遞區號</label>
+        <input name="post_code" class="mdl-textfield__input" type="text" />
+    </div>
+    <div class="mdl-textfield mdl-js-textfield">
+        <label class="mdl-textfield__label">聯絡電話</label>
+        <input name="telephone" class="mdl-textfield__input" type="text" />
+    </div>
+    <div class="mdl-textfield mdl-js-textfield">
+        <label class="mdl-textfield__label">網站</label>
+        <input name="website" class="mdl-textfield__input" type="text" />
+    </div>
+    <div>
+        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">新增</button>
+    </div>
 </form>
 {% endblock content%}

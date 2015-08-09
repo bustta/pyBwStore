@@ -8,21 +8,59 @@
         {% load staticfiles %}
 
         <title>{% block title %} | bwStores{% endblock %}</title>
-        <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css"  media="screen,projection"/>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.css">
     </head>
 
     <body>
-        <main>
-            <div class="container">
-                {% block content %}
-                {% endblock %}
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+            <header class="mdl-layout__header">
+                <div class="mdl-layout__header-row">
+                    <!-- Title -->
+                    <span class="mdl-layout-title">bwStores</span>
+                    <!-- Add spacer, to align navigation to the right -->
+                    <div class="mdl-layout-spacer"></div>
+                    <!-- Navigation. We hide it in small screens. -->
+                    <nav class="mdl-navigation mdl-layout--large-screen-only">
+                        <a href="{% url 'store_list' %}" class="mdl-navigation__link">商店列表</a>
+                        <a href="{% url 'store_create' %}" class="mdl-navigation__link">新增商店</a>
+                    </nav>
+                </div>
+            </header>
+            <div class="mdl-layout__drawer">
+                <span class="mdl-layout-title">bwStores</span>
+                <nav class="mdl-navigation">
+                    <a href="{% url 'store_list' %}" class="mdl-navigation__link">商店列表</a>
+                    <a href="{% url 'store_create' %}" class="mdl-navigation__link">新增商店</a>
+                </nav>
             </div>
-        </main>
+            <main class="mdl-layout__content">
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--4-col"></div>
+                    <div class="mdl-cell mdl-cell--4-col page-content">
+                        <center>
+                        {% block content %}
+                        {% endblock %}
+                        </center>
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col"></div>
+                </div>
+            </main>
+            <footer class="mdl-mini-footer maskup-footer">
+                <div class="mdl-mini-footer--left-section">
+                    <div class="mdl-logo">bwStores</div>
+                    <ul class="mdl-mini-footer--link-list">
+                        <li><span> @2015</span></li>
+                    </ul>
+                </div>
+            </footer>
+
+        </div>
 
 
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
+        <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
         <script>
             // GA here
         </script>
