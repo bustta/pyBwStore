@@ -4,8 +4,27 @@
 
 
 {% block content%}
-Store List
-{% for store in stores%}
-    <div>{{ store.name }}</div>
-{% endfor %}
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+    <thead>
+        <tr>
+            <th class="mdl-data-table__cell--non-numeric">店名</th>
+            <th class="mdl-data-table__cell--non-numeric">電話</th>
+            <th class="mdl-data-table__cell--non-numeric">地址</th>
+            <th class="mdl-data-table__cell--non-numeric">修改</th>
+            <th class="mdl-data-table__cell--non-numeric">刪除</th>
+
+        </tr>
+    </thead>
+    <tbody>
+    {% for store in stores%}
+        <tr>
+            <td><div>{{ store.name }}</div></td>
+            <td><div>{{ store.telephone }}</div></td>
+            <td><div>{{ store.address }}</div></td>
+            <td><div><a href={% url 'store_update' store.id %}><i class="fa fa-pencil"></i></a></div></td>
+            <td><div><a href={% url 'store_delete' store.id %}><i class="fa fa-trash-o"></i></a></div></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
 {% endblock content%}

@@ -6,40 +6,40 @@
 {% block content%}
 <form action="" method="post" role="form">
     {% csrf_token %}
-    <div>
-        <label>店名</label>
-        <input name="name" value="{{ store.name }}" />
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <label class="mdl-textfield__label">店名</label>
+        <input name="name" class="mdl-textfield__input" type="text"  value="{{ store.name }}" />
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <label class="mdl-textfield__label">類別</label>
+        <input name="category" class="mdl-textfield__input" type="text"  value="{{ store.category }}" />
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <label class="mdl-textfield__label">城市</label>
+        <input name="city" class="mdl-textfield__input" type="text"  value="{{ store.city }}" />
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <label class="mdl-textfield__label">區</label>
+        <input name="area" class="mdl-textfield__input" type="text"  value="{{ store.area }}" />
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <label class="mdl-textfield__label">地址</label>
+        <input name="address" class="mdl-textfield__input" type="text"  value="{{ store.address }}" />
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <label class="mdl-textfield__label">郵遞區號</label>
+        <input name="post_code" class="mdl-textfield__input" type="text"  value="{{ store.post_code }}" />
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <label class="mdl-textfield__label">聯絡電話</label>
+        <input name="telephone" class="mdl-textfield__input" type="text"  value="{{ store.telephone }}" />
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <label class="mdl-textfield__label">網站</label>
+        <input name="website" class="mdl-textfield__input" type="text"  value="{{ store.website }}" />
     </div>
     <div>
-        <label>類別</label>
-        <input name="category" value="{{ store.category }}" />
-    </div>
-    <div>
-        <label>城市</label>
-        <input name="city" value="{{ store.city }}" />
-    </div>
-    <div>
-        <label>區</label>
-        <input name="area" value="{{ store.area }}" />
-    </div>
-    <div>
-        <label>地址</label>
-        <input name="address" value="{{ store.address }}" />
-    </div>
-    <div>
-        <label>郵遞區號</label>
-        <input name="post_code" value="{{ store.post_code }}" />
-    </div>
-    <div>
-        <label>聯絡電話</label>
-        <input name="telephone" value="{{ store.telephone }}" />
-    </div>
-    <div>
-        <label>網站</label>
-        <input name="website" value="{{ store.website }}" />
-    </div>
-    <div>
-    <button type="submit">修改</button>
+        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">修改</button>
     </div>
 </form>
 {% endblock content%}
