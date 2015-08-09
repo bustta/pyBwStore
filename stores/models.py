@@ -17,3 +17,10 @@ class Store(models.Model):
 
     def get_absolute_url(self):
         return reverse('store_detail', kwargs={'pk': self.pk})
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=255, null=False)
+    sub_category = models.CharField(max_length=255, null=True)
+
+
