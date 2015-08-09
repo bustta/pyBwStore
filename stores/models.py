@@ -23,4 +23,21 @@ class Category(models.Model):
     name = models.CharField(max_length=255, null=False)
     sub_category = models.CharField(max_length=255, null=True)
 
+    def __str__(self):
+        return self.name
 
+
+class City(models.Model):
+    name = models.CharField(max_length=255, null=False)
+    post_code_in_3 = models.IntegerField(null=False)
+
+    def __str__(self):
+        return self.name
+
+
+class Region(models.Model):
+    name = models.CharField(max_length=255, null=False)
+    city = models.ForeignKey(City)
+
+    def __str__(self):
+        return self.name
