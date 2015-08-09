@@ -33,3 +33,9 @@ def store_update(request, pk):
             return redirect('store_list')
 
     return render(request, 'store_update.html', {'store': store})
+
+
+def store_delete(request, pk):
+    store = get_object_or_404(Store, pk=pk)
+    store.delete()
+    return redirect('store_list')
