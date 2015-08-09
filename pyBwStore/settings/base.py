@@ -23,6 +23,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = (
     'pyBwStore',
     'stores',
+    'django_ajax',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
