@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Store
-from django.forms.models import modelform_factory
+from .model_form import StoreForm
 
 
 def store_list(request):
@@ -9,7 +9,6 @@ def store_list(request):
 
 
 def store_create(request):
-    StoreForm = modelform_factory(Store, exclude=())
     if request.method == 'POST':
         form = StoreForm(request.POST)
         if form.is_valid():
@@ -24,3 +23,13 @@ def store_detail(request, pk):
     store = get_object_or_404(Store, pk=pk)
     return render(request, 'store_detail.html', {'store': store})
 
+
+def store_update(request, pk):
+    store = get_object_or_404(Store, pk=pk)
+    if request.method == 'POST':
+        form = StoreForm(request.POST, instance=store)
+        if form.is_valid():
+            form.save()
+            return redirect('store_list')
+
+    return render(request, 'store_update.html', {'store': store})
