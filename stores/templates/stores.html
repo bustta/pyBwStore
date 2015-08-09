@@ -5,4 +5,7 @@
 
 {% block content%}
 Store List
+{% for store in stores%}
+    <div>{{ store.name }}</div>
+{% endfor %}
 {% endblock content%}
