@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, url
 from .views import store_list, store_create, store_detail, store_update, store_delete
-
+from .views import get_area_by_city
 
 urlpatterns = patterns(
     '',
@@ -10,5 +10,7 @@ urlpatterns = patterns(
     url(r'^stores/(?P<pk>\d+)/$', store_detail, name='store_detail'),
     url(r'^stores/(?P<pk>\d+)/update$', store_update, name='store_update'),
     url(r'^stores/(?P<pk>\d+)/delete$', store_delete, name='store_delete'),
+
+    url(r'^api/area/(?P<pk>\w+)/$', get_area_by_city, name='get_area_by_city'),
 
 )

@@ -12,6 +12,7 @@ class Category(models.Model):
 
 class City(models.Model):
     name = models.CharField(max_length=255, null=False)
+    name_in_cht = models.CharField(max_length=255, null=False)
     post_code_in_3 = models.IntegerField(null=False)
 
     def __str__(self):
