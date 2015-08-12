@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Store
+from .models import Store, Area, City
 from .model_form import StoreForm
 from django_ajax.decorators import ajax
+import json
+
 
 def store_list(request):
     stores = Store.objects.all()
@@ -42,5 +44,12 @@ def store_delete(request, pk):
 
 
 @ajax
-def get_area_by_city(request):
-    pass
+def get_area_by_city(request, pk):
+    city_id = City.objects.get(name=pk).id
+    areas = Area.objects.filter(city=city_id)
+    result = []
+    for area in areas:
+        result.append(area.name)
+    res = json.dumps(result,  ensure_ascii=False)
+    return res
+
