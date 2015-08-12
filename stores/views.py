@@ -44,9 +44,8 @@ def store_delete(request, pk):
 
 
 @ajax
-def get_area_by_city(request, pk):
-    city_id = City.objects.get(name=pk).id
-    areas = Area.objects.filter(city=city_id)
+def get_area_by_city(request, city):
+    areas = Area.objects.filter(city__name=city)
     result = []
     for area in areas:
         result.append(area.name)

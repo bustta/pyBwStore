@@ -11,6 +11,6 @@ urlpatterns = patterns(
     url(r'^stores/(?P<pk>\d+)/update$', store_update, name='store_update'),
     url(r'^stores/(?P<pk>\d+)/delete$', store_delete, name='store_delete'),
 
-    url(r'^api/area/(?P<pk>\w+)/$', get_area_by_city, name='get_area_by_city'),
+    url(r'^api/area/(?P<city>\w+)/$', get_area_by_city, name='get_area_by_city'),
 
 )
