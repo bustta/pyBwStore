@@ -1,5 +1,8 @@
-.page-content {
-    display: block;
-    text-align: -webkit-center;
+/*.page-content {*/
+    /*display: block;*/
+    /*text-align: -webkit-center;*/
 
-}
+/*}*/
+
+html, body { height: 100%; margin: 0; padding: 0; }
+#map { height: 500px; }
