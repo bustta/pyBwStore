@@ -4,7 +4,7 @@
 
 
 {% block content%}
-
+<div id="map"></div>
 <div>
     <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
         <thead>
@@ -22,7 +22,7 @@
             <tr>
                 <td><div>{{ store.name }}</div></td>
                 <td><div>{{ store.telephone }}</div></td>
-                <td><div>{{ store.address }}</div></td>
+                <td><div class="store_address">{{ store.full_address }}</div></td>
                 <td><div><a href={% url 'store_update' store.id %}><i class="fa fa-pencil"></i></a></div></td>
                 <td><div><a href={% url 'store_delete' store.id %}><i class="fa fa-trash-o"></i></a></div></td>
             </tr>
@@ -46,9 +46,14 @@
             navigationControl: true,
             streetViewControl: false,
             disableDoubleClickZoom: true,
-            center: new google.maps.LatLng (25.04, 121.55)
+            center: new google.maps.LatLng (25.0518364, 121.5554666)
           });
         }
+
+        $('.store_address').each(function(item){
+           console.log($(this).text());
+        });
+
         google.maps.event.addDomListener (window, 'load', initMap);
     })();
 </script>
