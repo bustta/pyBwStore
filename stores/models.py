@@ -36,6 +36,8 @@ class Store(models.Model):
     post_code = models.IntegerField(null=True)
     telephone = models.CharField(max_length=30, null=True)
     website = models.CharField(max_length=255, null=True)
+    lat = models.FloatField(null=True)
+    lng = models.FloatField(null=True)
 
     def __str__(self):
         return self.name
