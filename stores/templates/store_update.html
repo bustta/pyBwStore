@@ -16,11 +16,16 @@
     </div>
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <label class="mdl-textfield__label">城市</label>
-        <input name="city" class="mdl-textfield__input" type="text"  value="{{ store.city }}" />
+        <select name="city" value="{{ store.city_id }}">
+            <option value="1">台北市</option>
+        </select>
     </div>
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <label class="mdl-textfield__label">區</label>
-        <input name="area" class="mdl-textfield__input" type="text"  value="{{ store.area }}" />
+        <select name="area" value="{{ store.area_id }}">
+            <option value="3">松山區</option>
+            <option value="4">中山區</option>
+        </select>
     </div>
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <label class="mdl-textfield__label">地址</label>
