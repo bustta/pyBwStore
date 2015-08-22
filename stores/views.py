@@ -5,6 +5,7 @@ from django_ajax.decorators import ajax
 import json
 import googlemaps
 import os
+from django.core import serializers
 
 
 def get_full_address(city, area, address):
@@ -82,6 +83,12 @@ def get_area_by_city(request, city):
     result = {}
     for area in areas:
         result[area.id] = area.name
-    res = json.dumps(result,  ensure_ascii=False)
+    res = json.dumps(result, ensure_ascii=False)
     return res
 
+
+@ajax
+def get_stores(request):
+    stores = Store.objects.all()
+    res = serializers.serialize('json', stores, ensure_ascii=False)
+    return res

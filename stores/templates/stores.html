@@ -54,7 +54,30 @@
            console.log($(this).text());
         });
 
+        var getStores = function(){
+            ajaxGet('/api/stores/', function(res){
+                var stores;
+                try {
+                    stores = JSON.parse(res);
+                }
+                catch (e) {
+                    stores = undefined;
+                }
+                stores.forEach(function(store){
+                    var myLatlng = new google.maps.LatLng(
+                            store.fields.lat, store.fields.lng);
+                    var marker = new google.maps.Marker({
+                        position: myLatlng,
+                        title: store.fields.name
+                    });
+                    marker.setMap(map);
+                });
+            });
+        };
+
         google.maps.event.addDomListener (window, 'load', initMap);
+        google.maps.event.addDomListener (window, 'load', getStores);
+
     })();
 </script>
 
