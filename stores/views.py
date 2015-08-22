@@ -23,8 +23,11 @@ def get_geocode(form):
     return geo_dict
 
 
-def get_city_area_cht(area_id):
-    area = Area.objects.filter(id=area_id)
+def set_store_lag_and_lng(form):
+    geo_dict = get_geocode(form)
+    setattr(form.instance, 'lat', geo_dict['lat'])
+    setattr(form.instance, 'lng', geo_dict['lng'])
+    return form
 
 
 def store_list(request):
@@ -39,10 +42,7 @@ def store_list(request):
 def store_create(request):
     if request.method == 'POST':
         form = StoreForm(request.POST)
-
-        geo_dict = get_geocode(form)
-        setattr(form.instance, 'lat', geo_dict['lat'])
-        setattr(form.instance, 'lng', geo_dict['lng'])
+        form = set_store_lag_and_lng(form)
 
         if form.is_valid():
             store = form.save()
@@ -61,9 +61,8 @@ def store_update(request, pk):
     store = get_object_or_404(Store, pk=pk)
     if request.method == 'POST':
         form = StoreForm(request.POST, instance=store)
-        geo_dict = get_geocode(form)
-        setattr(form.instance, 'lat', geo_dict['lat'])
-        setattr(form.instance, 'lng', geo_dict['lng'])
+        form = set_store_lag_and_lng(form)
+
         if form.is_valid():
             form.save()
             return redirect('store_list')
@@ -80,9 +79,9 @@ def store_delete(request, pk):
 @ajax
 def get_area_by_city(request, city):
     areas = Area.objects.filter(city__name=city)
-    result = []
+    result = {}
     for area in areas:
-        result.append(area.name)
+        result[area.id] = area.name
     res = json.dumps(result,  ensure_ascii=False)
     return res
 
