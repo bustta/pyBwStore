@@ -31,12 +31,16 @@ def set_store_lag_and_lng(form):
     return form
 
 
+def set_store_full_address(form):
+    area = Area.objects.get(pk=form.data['area'])
+    full_address = get_full_address(
+        area.city.name_in_cht, area.name, form.data['address'])
+    setattr(form.instance, 'full_address', full_address)
+    return form
+
+
 def store_list(request):
     stores = Store.objects.all()
-    for store in stores:
-        store.full_address = get_full_address(
-            store.city.name_in_cht, store.area.name, store.address)
-
     return render(request, 'stores.html', {'stores': stores})
 
 
@@ -44,6 +48,7 @@ def store_create(request):
     if request.method == 'POST':
         form = StoreForm(request.POST)
         form = set_store_lag_and_lng(form)
+        form = set_store_full_address(form)
 
         if form.is_valid():
             store = form.save()
@@ -63,12 +68,14 @@ def store_update(request, pk):
     if request.method == 'POST':
         form = StoreForm(request.POST, instance=store)
         form = set_store_lag_and_lng(form)
+        form = set_store_full_address(form)
 
         if form.is_valid():
             form.save()
             return redirect('store_list')
 
-    return render(request, 'store_update.html', {'store': store})
+    areas = Area.objects.filter(city=store.city_id)
+    return render(request, 'store_update.html', {'store': store, 'areas': areas})
 
 
 def store_delete(request, pk):

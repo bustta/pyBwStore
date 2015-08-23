@@ -9,6 +9,7 @@ class StoreAdmin(admin.ModelAdmin):
         'city',
         'area',
         'address',
+        'full_address',
         'telephone',
         'website',
         'lat',

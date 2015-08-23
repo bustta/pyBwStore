@@ -18,7 +18,7 @@ class City(models.Model):
 
 
     def __str__(self):
-        return self.name
+        return self.name_in_cht
 
 
 class Area(models.Model):
@@ -37,6 +37,7 @@ class Store(models.Model):
     city = models.ForeignKey(City)
     area = models.ForeignKey(Area)
     address = models.CharField(max_length=255)
+    full_address = models.CharField(max_length=255, default='')
     telephone = models.CharField(max_length=30, null=True)
     website = models.CharField(max_length=255, null=True)
     lat = models.FloatField(null=True)

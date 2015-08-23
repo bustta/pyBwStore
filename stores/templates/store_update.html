@@ -18,13 +18,15 @@
         <label class="mdl-textfield__label">城市</label>
         <select name="city" value="{{ store.city_id }}">
             <option value="1">台北市</option>
+            <option value="2">新北市</option>
         </select>
     </div>
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <label class="mdl-textfield__label">區</label>
-        <select name="area" value="{{ store.area_id }}">
-            <option value="3">松山區</option>
-            <option value="4">中山區</option>
+        <select name="area" id="areaSelect">
+            {% for area in areas %}
+                <option value="{{ area.id }}">{{ area.name }}</option>
+            {% endfor %}
         </select>
     </div>
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -44,3 +46,15 @@
     </div>
 </form>
 {% endblock content%}
+
+{% block script %}
+<script>
+    (function(){
+        var initUpdateArea = function(){
+            $('#areaSelect').val({{ store.area_id }});
+        };
+        initUpdateArea();
+    })();
+
+</script>
+{% endblock %}
