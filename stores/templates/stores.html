@@ -4,7 +4,8 @@
 
 
 {% block content%}
-<div id="citySelectorForMapDiv">
+<div id="citySelectorForMapDiv" class="mdl-textfield mdl-js-textfield">
+    <label class="mdl-textfield__label" for="citySelectorForMap">選擇地圖區域</label>
     <select id="citySelectorForMap">
         <option value="1">台北市</option>
         <option value="2">新北市</option>
@@ -23,7 +24,7 @@
 
             </tr>
         </thead>
-        <tbody>
+        <tbody id="storesTable">
         {% for store in stores%}
             <tr>
                 <td><div>{{ store.name }}</div></td>
@@ -97,10 +98,36 @@
 
         var onTargetCityChange = function(){
             $('#citySelectorForMap').change(function(){
-                ajaxGet('/api/city/' + $(this).val(), function(res){
+                var city_id = $(this).val();
+                ajaxGet('/api/city/' + city_id, function(res){
                     try {
                         var city = JSON.parse(res)[0].fields;
                         map.setCenter(new google.maps.LatLng(city.lat, city.lng));
+                    }
+                    catch (e) {
+                        console.log(e);
+                    }
+                });
+                ajaxGet('/api/stores/' + city_id, function(res){
+                    try {
+                        var stores = JSON.parse(res);
+                        var targetContainer = $('#storesTable');
+                        targetContainer.empty();
+                        var storesListHtml = '';
+                        stores.forEach(function(item){
+                            var storeInfo = item.fields;
+                            var updateUrl = '{% url 'store_update' 1 %}'.replace(1, item.pk);
+                            var deleteUrl = '{% url 'store_delete' 1 %}'.replace(1, item.pk);
+                            storesListHtml +=
+                                '<tr>' +
+                                    '<td><div>' + storeInfo.name + '</div></td>' +
+                                    '<td><div>' + storeInfo.telephone + '</div></td>' +
+                                    '<td><div>' + storeInfo.full_address + '</div></td>' +
+                                    '<td><div><a href=' + updateUrl + '><i class="fa fa-pencil"></i></a></div></td>' +
+                                    '<td><div><a href=' + updateUrl + '><i class="fa fa-trash-o"></i></a></div></td>' +
+                                '</tr>';
+                        });
+                        targetContainer.append(storesListHtml);
                     }
                     catch (e) {
                         console.log(e);
@@ -112,7 +139,6 @@
         google.maps.event.addDomListener (window, 'load', initMap);
         google.maps.event.addDomListener (window, 'load', markStores);
         google.maps.event.addDomListener (window, 'load', onTargetCityChange);
-
 
 
     })();
