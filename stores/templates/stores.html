@@ -72,11 +72,10 @@
                     });
                     var infoContent =
                         '<div id="content">' +
-                            '<h3 id="infoHeading">' + store.fields.name + '</h3>' +
+                            '<h3 id="infoHeading"><a target="_blank" href="' + store.fields.website + '">' + store.fields.name + '</a></h3>' +
                                 '<div id="bodyContent">' +
                                     '<p>Address: ' + store.fields.address + '</p>' +
                                     '<p>Phone: ' + store.fields.telephone + '</p>' +
-                                    '<p>Website: ' + store.fields.website + '</p>' +
                                 '</div>' +
                         '</div>';
                     var infowindow = new google.maps.InfoWindow({
