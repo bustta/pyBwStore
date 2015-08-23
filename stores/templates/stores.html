@@ -4,6 +4,12 @@
 
 
 {% block content%}
+<div id="citySelectorForMapDiv">
+    <select id="citySelectorForMap">
+        <option value="1">台北市</option>
+        <option value="2">新北市</option>
+    </select>
+</div>
 <div id="map"></div>
 <div>
     <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
@@ -46,7 +52,7 @@
             navigationControl: true,
             streetViewControl: false,
             disableDoubleClickZoom: true,
-            center: new google.maps.LatLng (25.0518364, 121.5554666)
+            center: new google.maps.LatLng (25.037549, 121.563798)
           });
         }
 
@@ -54,7 +60,7 @@
            console.log($(this).text());
         });
 
-        var getStores = function(){
+        var markStores = function(){
             ajaxGet('/api/stores/', function(res){
                 var stores;
                 try {
@@ -89,8 +95,25 @@
             });
         };
 
+        var onTargetCityChange = function(){
+            $('#citySelectorForMap').change(function(){
+                ajaxGet('/api/city/' + $(this).val(), function(res){
+                    try {
+                        var city = JSON.parse(res)[0].fields;
+                        map.setCenter(new google.maps.LatLng(city.lat, city.lng));
+                    }
+                    catch (e) {
+                        console.log(e);
+                    }
+                });
+            });
+        };
+
         google.maps.event.addDomListener (window, 'load', initMap);
-        google.maps.event.addDomListener (window, 'load', getStores);
+        google.maps.event.addDomListener (window, 'load', markStores);
+        google.maps.event.addDomListener (window, 'load', onTargetCityChange);
+
+
 
     })();
 </script>

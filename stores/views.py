@@ -92,3 +92,11 @@ def get_stores(request):
     stores = Store.objects.all()
     res = serializers.serialize('json', stores, ensure_ascii=False)
     return res
+
+
+@ajax
+def get_city(request, pk):
+    city = City.objects.get(pk=pk)
+    res = serializers.serialize('json', [city, ], ensure_ascii=False)
+    return res
+
