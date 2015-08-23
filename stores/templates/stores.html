@@ -70,6 +70,21 @@
                         position: myLatlng,
                         title: store.fields.name
                     });
+                    var infoContent =
+                        '<div id="content">' +
+                            '<h3 id="infoHeading">' + store.fields.name + '</h3>' +
+                                '<div id="bodyContent">' +
+                                    '<p>Address: ' + store.fields.address + '</p>' +
+                                    '<p>Phone: ' + store.fields.telephone + '</p>' +
+                                    '<p>Website: ' + store.fields.website + '</p>' +
+                                '</div>' +
+                        '</div>';
+                    var infowindow = new google.maps.InfoWindow({
+                        content: infoContent
+                    });
+                    marker.addListener('click', function() {
+                        infowindow.open(map, marker);
+                    });
                     marker.setMap(map);
                 });
             });
