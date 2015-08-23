@@ -6,5 +6,4 @@ class StoreForm(ModelForm):
     class Meta:
         model = Store
         fields = ['name', 'category', 'city', 'area',
-                  'address', 'post_code', 'telephone',
-                  'website']
+                  'address', 'telephone', 'website']

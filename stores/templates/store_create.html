@@ -16,14 +16,14 @@
     </div>
     <div class="mdl-textfield mdl-js-textfield">
         <label class="mdl-textfield__label">城市</label>
-        <select name="city" id="city-select">
+        <select name="city" id="citySelect">
             <option value="1">台北市</option>
             <option value="2">新北市</option>
         </select>
     </div>
     <div class="mdl-textfield mdl-js-textfield">
         <label class="mdl-textfield__label">區</label>
-        <select name="area" id="area-select">
+        <select name="area" id="areaSelect">
         </select>
     </div>
     <div class="mdl-textfield mdl-js-textfield">
@@ -31,16 +31,12 @@
         <input name="address" class="mdl-textfield__input" type="text" />
     </div>
     <div class="mdl-textfield mdl-js-textfield">
-        <label class="mdl-textfield__label">郵遞區號</label>
-        <input name="post_code" class="mdl-textfield__input" type="text" />
-    </div>
-    <div class="mdl-textfield mdl-js-textfield">
         <label class="mdl-textfield__label">聯絡電話</label>
         <input name="telephone" class="mdl-textfield__input" type="text" />
     </div>
     <div class="mdl-textfield mdl-js-textfield">
         <label class="mdl-textfield__label">網站</label>
-        <input name="website" class="mdl-textfield__input" type="text" />
+        <input name="website" class="mdl-textfield__input" type="text"/>
     </div>
     <div>
         <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">新增</button>
@@ -64,7 +60,7 @@
                     areaOptniosHtml +=
                         '<option value=' + key + '>' + areas[key] + '</option>';
                 });
-                $('#area-select').empty().append(areaOptniosHtml);
+                $('#areaSelect').empty().append(areaOptniosHtml);
             });
 
         };
