@@ -16,19 +16,22 @@
     </div>
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <label class="mdl-textfield__label">城市</label>
-        <input name="city" class="mdl-textfield__input" type="text"  value="{{ store.city }}" />
+        <select name="city" value="{{ store.city_id }}">
+            <option value="1">台北市</option>
+            <option value="2">新北市</option>
+        </select>
     </div>
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <label class="mdl-textfield__label">區</label>
-        <input name="area" class="mdl-textfield__input" type="text"  value="{{ store.area }}" />
+        <select name="area" id="areaSelect">
+            {% for area in areas %}
+                <option value="{{ area.id }}">{{ area.name }}</option>
+            {% endfor %}
+        </select>
     </div>
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <label class="mdl-textfield__label">地址</label>
         <input name="address" class="mdl-textfield__input" type="text"  value="{{ store.address }}" />
-    </div>
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <label class="mdl-textfield__label">郵遞區號</label>
-        <input name="post_code" class="mdl-textfield__input" type="text"  value="{{ store.post_code }}" />
     </div>
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <label class="mdl-textfield__label">聯絡電話</label>
@@ -43,3 +46,15 @@
     </div>
 </form>
 {% endblock content%}
+
+{% block script %}
+<script>
+    (function(){
+        var initUpdateArea = function(){
+            $('#areaSelect').val({{ store.area_id }});
+        };
+        initUpdateArea();
+    })();
+
+</script>
+{% endblock %}

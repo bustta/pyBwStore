@@ -16,19 +16,19 @@
     </div>
     <div class="mdl-textfield mdl-js-textfield">
         <label class="mdl-textfield__label">城市</label>
-        <input name="city" class="mdl-textfield__input" id="city_input" type="text" />
+        <select name="city" id="citySelect">
+            <option value="1">台北市</option>
+            <option value="2">新北市</option>
+        </select>
     </div>
     <div class="mdl-textfield mdl-js-textfield">
         <label class="mdl-textfield__label">區</label>
-        <input name="area" class="mdl-textfield__input" type="text" />
+        <select name="area" id="areaSelect">
+        </select>
     </div>
     <div class="mdl-textfield mdl-js-textfield">
         <label class="mdl-textfield__label">地址</label>
         <input name="address" class="mdl-textfield__input" type="text" />
-    </div>
-    <div class="mdl-textfield mdl-js-textfield">
-        <label class="mdl-textfield__label">郵遞區號</label>
-        <input name="post_code" class="mdl-textfield__input" type="text" />
     </div>
     <div class="mdl-textfield mdl-js-textfield">
         <label class="mdl-textfield__label">聯絡電話</label>
@@ -36,10 +36,34 @@
     </div>
     <div class="mdl-textfield mdl-js-textfield">
         <label class="mdl-textfield__label">網站</label>
-        <input name="website" class="mdl-textfield__input" type="text" />
+        <input name="website" class="mdl-textfield__input" type="text"/>
     </div>
     <div>
         <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">新增</button>
     </div>
 </form>
 {% endblock content%}
+
+{% block script %}
+    <script>
+        var initAreaOptions = function(){
+            var areaOptniosHtml = '';
+            ajaxGet('/api/area/taipei_city/', function(content){
+                var areas;
+                try {
+                    areas = JSON.parse(content);
+                }
+                catch (e){
+                    areas = undefined;
+                }
+                Object.keys(areas).forEach(function(key){
+                    areaOptniosHtml +=
+                        '<option value=' + key + '>' + areas[key] + '</option>';
+                });
+                $('#areaSelect').empty().append(areaOptniosHtml);
+            });
+
+        };
+        initAreaOptions();
+    </script>
+{% endblock script %}

@@ -13,15 +13,19 @@ class Category(models.Model):
 class City(models.Model):
     name = models.CharField(max_length=255, null=False)
     name_in_cht = models.CharField(max_length=255, null=False)
-    post_code_in_3 = models.IntegerField(null=False)
+    lat = models.FloatField(null=True)
+    lng = models.FloatField(null=True)
+
 
     def __str__(self):
-        return self.name
+        return self.name_in_cht
 
 
 class Area(models.Model):
     name = models.CharField(max_length=255, null=False)
     city = models.ForeignKey(City)
+    lat = models.FloatField(null=True)
+    lng = models.FloatField(null=True)
 
     def __str__(self):
         return self.name
@@ -33,9 +37,11 @@ class Store(models.Model):
     city = models.ForeignKey(City)
     area = models.ForeignKey(Area)
     address = models.CharField(max_length=255)
-    post_code = models.IntegerField(null=True)
+    full_address = models.CharField(max_length=255, default='')
     telephone = models.CharField(max_length=30, null=True)
     website = models.CharField(max_length=255, null=True)
+    lat = models.FloatField(null=True)
+    lng = models.FloatField(null=True)
 
     def __str__(self):
         return self.name

@@ -9,9 +9,11 @@ class StoreAdmin(admin.ModelAdmin):
         'city',
         'area',
         'address',
-        'post_code',
+        'full_address',
         'telephone',
-        'website'
+        'website',
+        'lat',
+        'lng'
     )
 
 
@@ -20,11 +22,11 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class CityAdmin(admin.ModelAdmin):
-    list_display = ('name', 'post_code_in_3')
+    list_display = ('name', 'name_in_cht', 'lat', 'lng')
 
 
 class AreaAdmin(admin.ModelAdmin):
-    list_display = ('name', 'city')
+    list_display = ('name', 'city', 'lat', 'lng')
 
 
 admin.site.register(Store, StoreAdmin)
